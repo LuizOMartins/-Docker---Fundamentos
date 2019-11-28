@@ -1,0 +1,30 @@
+
+
+Por que usar Docker ?
+- Padronização e produtividade.
+- Simplicidade e configurações rapidas.
+- multi-plataforma.
+
+
+O que oo docker pode resolver: 
+- produtividade.
+- simplicidade nas configurações
+
+
+Docker é uma plataforma open source na linguagem de programação Go
+
+Container:  ambiente isolado.
+
+
+Docker é uma implementação de virtualização de containers que vem conquistando cada vez mais espaço devido à computação em nuvem.
+
+
+Anteriormente, o hypervisor dominava.
+
+hypervisor: 
+
+
+Sistema virtualizado por VM:
+
+Sistema virtualizado por VM
+https://www.meupositivo.com.br/panoramapositivo/container-docker/
