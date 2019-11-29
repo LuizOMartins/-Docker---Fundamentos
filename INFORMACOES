@@ -177,6 +177,54 @@ docker stop ID ID ID
 
 -----------------------------------------------------------------------------
 
+O que é uma imagem docker?
+- binarios e dependencias para sua aplicação.
+- conjunto de metadados que contem as informações sobre como executar a imagem.
+-- path
+-- portas disponiveis
+- nao é SO completo, com kernel e drivers
+
+
+----------
+
+
+
+docker image  ls 
+
+// hub.docker.com
+
+Layers de Imagens Docker: 
+
+
+docker image history nginx
+-> lista todas as ações que aconteceram com essa imagem
+->  cada uma dessa é uma layer
+
+
+docker pull nginx:1.14.0-perl 
+
+docker image ls
+
+docker image history nginx:1.14.0-perl 
+
+docker image inspect nginx |more
+-> inspeciona a imagem
+
+docker pull botnami/nginx
+
+
+docker login
+-username
+-senha
+-> do docker hub
+
+DESAFIO 2 :
+
+
+
+
+
+
 
 
 
