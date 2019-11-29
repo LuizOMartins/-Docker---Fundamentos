@@ -1,10 +1,33 @@
+Virtualização e tipos de virtualização:
 
+hypervisor: software que acessa o hardware propriamente dito e é usado para criar e executar maquinas virtuais.
+
+tipo 2: programa instalado em um SO.
+- VM - virtual box.
+
+tipo 1: programa tem acesso direto ao Hardware.
+- VMware
+
+-------------------------------------------------------------
+
+Apache x nginx -> servidores Web.
+
+
+Apache:
+.htaccess:  usado para sua configuração;
+- cada pasta pode ter seu arquivo de configuração.
+- sistema de modulos dinamicos. 
+
+nginx:
+- execucao de modulos PHP separado do servidor WEB ( evvitando que o servidor venha a travar)
+-
+
+-------------------------------------------------------------
 
 Por que usar Docker ?
 - Padronização e produtividade.
 - Simplicidade e configurações rapidas.
 - multi-plataforma.
-
 
 O que oo docker pode resolver: 
 - produtividade.
@@ -12,19 +35,152 @@ O que oo docker pode resolver:
 
 
 Docker é uma plataforma open source na linguagem de programação Go
-
 Container:  ambiente isolado.
-
 
 Docker é uma implementação de virtualização de containers que vem conquistando cada vez mais espaço devido à computação em nuvem.
 
 
-Anteriormente, o hypervisor dominava.
+---------------------------------------------------------------
 
-hypervisor: 
+Diferença entre docker e virtualização: image.
+
+Formato de comandos docker:
+
+Novo:  Docker <comando> <sub-comando> (opções)
+
+Clássico:  docker <comando> (opções)
 
 
-Sistema virtualizado por VM:
+----------------------------
 
-Sistema virtualizado por VM
-https://www.meupositivo.com.br/panoramapositivo/container-docker/
+docker -- version
+
+docker version
+- mais detalhada
+
+docker images
+- lista imagens
+
+docker images ls
+
+
+docker container  -a 
+- mostra tbm os sem execucao
+
+--------------------------------
+
+
+Criando e gerenciando Container: 
+
+dokcer container run --publish 80:80 nginx
+
+-----------------------------------------------------
+
+docker container start iD
+
+imagem:  a partir dela que um container é gerado
+
+
+Exemplo:
+
+docker container ls -a
+-listar
+
+
+
+docker container run --name web01 -d --publish 81:80 nginx
+-- publicando o container  web01 baseado na imagem nginx
+--> publicando o servidor WEB
+-criar container sem nome - fica com nome aleatorio
+-> Passos:
+1- buscou a imagem nginx
+2- buscou local
+3- nao encontrou buscou no docker hub ()
+4- trouxe a imagem
+5- publicou na porta 81
+
+
+
+docker container stop ID
+-> parar um container
+
+
+
+docker pull httpd
+-> baixar imagens.
+httpd = apache
+
+
+docker container logs web01
+-> ver logs de um container
+
+
+
+Funcionalidade pratica:
+ter vários servidores web separador em container ( até de  diferente plataforma apache e nginx)
+
+docker container rm ID
+
+-----------------------------------------------
+
+
+Desafio:
+
+Executar os seguites container:
+
+
+Nginx 
+Mysql
+HTTPD (APACHE)
+
+Execute em modo "Detach" e com nomes '--name'
+
+-> dicas 
+ao executar o container MyQSL utilizar a variavel  "-e" para:
+MYSQL_RANDOM_ROOT_PASSWORD=yes
+
+
+Execute:  "Docker container logs" para localizar a senha randomica criada para o Container MySQL.
+
+Ao final dos exercicios, remova todos os containers
+- Utilize o comando "Docker container ls -a" para verificar
+
+Comandos:
+
+
+docker container run -d --publish 3306:3306 --name db -e MYSQL_RANDON_ROOT_PASSWORD=yes
+docker container logs db
+docker container logs db |GENERETED
+docker exec -it db bash
+-> dentro do container
+mysql -u root -p 
+-entre senha
+- colar senha 
+-it > modo iterativo
+ALTER USER 'root'@'localhost' IDENTIFIED BY 'senharoot';
+exit;
+
+mysql -u -root -p 
+-enter senha
+
+
+docker container run -d --name webserver -p 8080:80 httpd
+-> publicando container na porta  80, mas pode ser visto pela porta 8080 do Host Docker
+docker container run -d --name proxy -p 80:80 nginx
+
+
+docker container ls
+
+docker stop ID ID ID
+
+
+
+-----------------------------------------------------------------------------
+
+
+
+
+
+
+
+
