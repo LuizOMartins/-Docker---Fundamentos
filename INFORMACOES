@@ -218,17 +218,85 @@ docker login
 -senha
 -> do docker hub
 
-DESAFIO 2 :
+DESAFIO 2 : prints na pasta.
 
 
+docker image pull mysql/mysql-server:5.7
+-> download da versão
+
+docker image ls
+-> lista
+
+docker image pull zabbix/zabbix-server-mysql
+-> sem tagueamente de versão
+
+docker image pull zabbix/zabbix-web-nginx-mysql
 
 
+-> tagueamento
+
+docker image tag zabbix/zabbix-web-nginx-mysql tagueamento/zabbix-nginx
+
+docker image tag zabbix/zabbix-server-mysql tagueamento/zabbix-mysql
 
 
+---------------------------------------
 
 
+docker run --name mysql-server -t \
+-e MYSQL_DATABASE="zabbix" \
+-e MYSQL_USER="zabbix" \
+-e MYSQL_PASSWORD="zabbix_pwd" \
+-e MYSQL_ROOT_PASSWORD="root_pwd" \
+-d mysql:5.7 \
+--characther-set-server=utf-8 --collation-server=utf8_bin
 
 
+docker container ls 
+
+docker container logs ID
+
+docker run --name zabbix -t \
+-e DB_SERVER_HOST="mysql-sever"
+-e MYSQL_DATABASE="zabbix" \
+-e MYSQL_USER="zabbix" \
+-e MYSQL_PASSWORD="zabbix_pwd" \
+-e MYSQL_ROOT_PASSWORD="root_pwd" \
+--link mysql-server:mysql \
+-p 10051:10051 \
+-d taguamento/zabbix-mysql 
 
 
+docker container ls 
 
+docker container logs 
+
+netstat -ano |grep 10051
+
+
+clear
+
+
+docker run --name nginx -t \
+-e DB_SERVER_HOST="mysql-sever"
+-e MYSQL_DATABASE="zabbix" \
+-e MYSQL_USER="zabbix" \
+-e MYSQL_PASSWORD="zabbix_pwd" \
+-e MYSQL_ROOT_PASSWORD="root_pwd" \
+--link mysql-server:mysql \
+--link zabbix \
+-p 80:80 \
+-d taguamento/zabbix-nginx 
+
+docker container ls
+
+docker container logs   ID
+
+
+telnet docker01 80
+
+docker image ls
+
+docker tag tagueamento/zabbix-mysql luiz/zabbix-mysql
+
+docker push  luiz/zabbix-mysql
